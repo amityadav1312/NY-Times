@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +31,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+/**
+ * News feed activity...
+ */
 public class NewsFeedActivity extends AppCompatActivity implements View, NewsFeedClickListener {
 
     @BindView(R.id.rv_news_list)
@@ -67,7 +69,7 @@ public class NewsFeedActivity extends AppCompatActivity implements View, NewsFee
 
     @Override
     public void showError(String message) {
-        Toast.makeText(this, "Retrieved!", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.error_getting_feeds), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -83,7 +85,7 @@ public class NewsFeedActivity extends AppCompatActivity implements View, NewsFee
                         Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
                     mPresenter.getNewsFeeds();
                 }else{
-                    Toast.makeText(this, "Internet Permission required..!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.permission_required), Toast.LENGTH_LONG).show();
                 }
                 break;
         }

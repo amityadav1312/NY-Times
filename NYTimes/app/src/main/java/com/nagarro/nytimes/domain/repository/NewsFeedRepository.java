@@ -1,20 +1,21 @@
 package com.nagarro.nytimes.domain.repository;
 
-import android.util.Log;
-
 import com.nagarro.nytimes.domain.interactors.ResponseListener;
 import com.nagarro.nytimes.domain.model.NewFeed;
 import com.nagarro.nytimes.domain.model.Result;
 import com.nagarro.nytimes.service.APIInterface;
 import com.nagarro.nytimes.service.ApiClient;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import timber.log.Timber;
 
+/**
+ * Repository class to get News feed..
+ */
 public class NewsFeedRepository implements FeedRepository {
 
     private ResponseListener responseListener;
@@ -41,7 +42,7 @@ public class NewsFeedRepository implements FeedRepository {
             @Override
             public void onFailure(Call<NewFeed> call, Throwable t) {
                 // Log error here since request failed
-                Log.d("Repository", t.getLocalizedMessage());
+                Timber.d(t.getLocalizedMessage());
                 responseListener.onFailure(t.getLocalizedMessage());
             }
         });
